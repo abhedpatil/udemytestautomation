@@ -1,0 +1,10 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+build/
+.idea/
+src/main/
+Test_Reports/
+out/
+target/
+resources/adhoc.xml
+TestExecutionLog.csv
+*.iml
