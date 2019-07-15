@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Onboarding_and_Origination" parallel="methods" thread-count="6">
+    <parameter name="environment" value="qa"/>
+    <test name="Regression" preserve-order="false">
+        <groups>
+            <run>
+                <include name="regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.phpTravels"/>
+        </classes>
+    </test>
+</suite>
