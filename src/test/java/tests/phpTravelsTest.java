@@ -1,9 +1,11 @@
 package tests;
 
-import org.testng.annotations.AfterTest;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.phpTravelsPage;
+import pages.PhpTravelsPage;
+import pages.PhptravelspageCSSSelector;
 
 public class phpTravelsTest extends baseTest {
 
@@ -21,29 +23,30 @@ public class phpTravelsTest extends baseTest {
             driver = new ChromeDriver();
             driver.get(prop.getProperty("url"));
         }*/
+    public WebDriver driver;
     @BeforeMethod
     public void openBrowser() throws Exception {
-        setup();
+        this.driver = setup();
     }
 
-    @AfterTest
+    @AfterMethod
     public void closeBrower() throws Exception {
-        endBrowser();
+        tearDownEveryTest();
     }
 
 
     @Test(description = "Dialog Box")
     public void validateNotificationsDialogBox() throws Exception {
-        phpTravelsPage phpTravelsPage = new phpTravelsPage(driver);
+        PhpTravelsPage phpTravels = new PhpTravelsPage(this.driver);
 
-        phpTravelsPage.validateNotificationsDialogBox();
+        phpTravels.validateNotificationsDialogBox();
     }
 
     @Test(description = "Dialog Box using Page Factory")
     public void validateNotificationsDialogBoxUsingPageFactory() throws Exception {
-        phpTravelsPage phpTravelsPage = new phpTravelsPage(driver);
+        PhptravelspageCSSSelector phptravelspageCSS = new PhptravelspageCSSSelector(this.driver);
 
-        phpTravelsPage.validateNotificationsDialogBoxUsingPageFactory();
+        phptravelspageCSS.validateNotificationsDialogBox();
     }
 
 
