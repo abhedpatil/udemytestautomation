@@ -3,9 +3,9 @@ package pages;
 import data.constants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import static java.lang.Thread.sleep;
 
 public class PhpTravelsPage implements constants {
 
@@ -21,8 +21,9 @@ public class PhpTravelsPage implements constants {
     }
 
     public void validateNotificationsDialogBox() throws Exception {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(normalPopover)));
+        //WebDriverWait wait = new WebDriverWait(driver, 10);
+        //wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(normalPopover)));
+        sleep(5000);
 
         if (driver.findElement(By.cssSelector(normalPopover)).isDisplayed()) {
             //driver.findElement(By.cssSelector(onesignalPopoverAllowButton)).isDisplayed();

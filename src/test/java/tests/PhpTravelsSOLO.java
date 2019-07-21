@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class phpTravelsSOLO {
+public class PhpTravelsSOLO {
 
     @FindBy(css = "#onesignal-popover-allow-button")
     WebElement onesignalPopoverAllowButton1;
