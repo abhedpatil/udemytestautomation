@@ -1,29 +1,44 @@
 package pages;
 
 import data.constants;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+
+import static java.lang.Thread.sleep;
 
 public class PhptravelspageCSSSelector implements constants {
 
     WebDriver driver;
-    public WebElement onesignalPopoverAllowButton = driver.findElement(By.cssSelector("#onesignal-popover-allow-button"));
-    public WebElement onesignalPopoverCancelButton = driver.findElement(By.cssSelector("#onesignal-popover-cancel-button"));
-    public WebElement normalPopover = driver.findElement(By.cssSelector("#normal-popover"));
-    public WebElement popoverBodyMessage = driver.findElement(By.cssSelector(".popover-body-message"));
+
+    @FindBy(css = "#onesignal-popover-allow-button")
+    WebElement onesignalPopoverAllowButton;
+    @FindBy(css = "#onesignal-popover-cancel-button")
+    WebElement onesignalPopoverCancelButton;
+    @FindBy(css = "#normal-popover")
+    WebElement normalPopover;
+    @FindBy(css = ".popover-body-message")
+    WebElement popoverBodyMessage;
 
     public PhptravelspageCSSSelector(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
+    //private WebElement onesignalPopoverAllowButton = driver.findElement(By.cssSelector("#onesignal-popover-allow-button"));
+    //private WebElement onesignalPopoverCancelButton = driver.findElement(By.cssSelector("#onesignal-popover-cancel-button"));
+    //private WebElement normalPopover = driver.findElement(By.cssSelector("#normal-popover"));
+    //private WebElement popoverBodyMessage = driver.findElement(By.cssSelector(".popover-body-message"));
+
     public void validateNotificationsDialogBox() throws Exception {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(normalPopover));
-        //wait(10);
+        System.out.println("Executing Sleep for 5 secs");
+        try {
+            sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         if (normalPopover.isDisplayed()) {
             Assert.assertTrue(onesignalPopoverAllowButton.isDisplayed(), "Allow button is displayed");
@@ -37,6 +52,8 @@ public class PhptravelspageCSSSelector implements constants {
 
             String allow = onesignalPopoverAllowButton.getText();
             Assert.assertEquals(allow, constants.allow);
+        } else {
+            Assert.fail("Notifications Object not displayed");
         }
     }
 }
